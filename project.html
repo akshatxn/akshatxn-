@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: lightblue;
+                font-family: Arial, sans-serif;
+            }
+    
+            h1 {
+                color: white;
+                text-align: center;
+            }
+    
+            form {
+                margin: 0 auto;
+                width: 400px;
+                padding: 20px;
+                border: 5px solid white;
+            }
+    
+            label {
+                display: block;
+                margin-bottom: 10px;
+            }
+    
+            input {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                border: 2px solid black;
+            }
+    
+            button {
+                display: block;
+                margin-top: 20px;
+                width: 100%;
+                padding: 10px;
+                border: none;
+                background-color: green;
+                color: white;
+                font-size: 20px;
+            }
+    
+            #result {
+                margin: 0 auto;
+                width: 400px;
+                padding: 20px;
+                border: 5px solid white;
+                text-align: center;
+            }
+    
+            #result p {
+                font-size: 24px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>VIT School</h1>
+        <form id="form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="roll">Roll No:</label>
+            <input type="number" id="roll" name="roll" required>
+            <label for="english">English:</label>
+            <input type="number" id="english" name="english" min="0" max="100" required>
+            <label for="maths">Maths:</label>
+            <input type="number" id="maths" name="maths" min="0" max="100" required>
+            <label for="commerce">Commerce:</label>
+            <input type="number" id="commerce" name="commerce" min="0" max="100" required>
+            <label for="arts">Arts:</label>
+            <input type="number" id="arts" name="arts" min="0" max="100" required>
+            <label for="computer">Computer:</label>
+            <input type="number" id="computer" name="computer" min="0" max="100" required>
+            <button type="submit">Submit</button>
+        </form>
+    
+        <div id="result"></div>
+    
+        <script>
+            // Get the form element
+            var form = document.getElementById("form");
+    
+            // Add an event listener to handle the form submission
+            form.addEventListener("submit", function(event) {
+                // Prevent the default form action
+                event.preventDefault();
+    
+                // Get the input values
+                var name = document.getElementById("name").value;
+                var roll = document.getElementById("roll").value;
+                var english = parseInt(document.getElementById("english").value);
+                var maths = parseInt(document.getElementById("maths").value);
+                var commerce = parseInt(document.getElementById("commerce").value);
+                var arts = parseInt(document.getElementById("arts").value);
+                var computer = parseInt(document.getElementById("computer").value);
+    
+                // Calculate the total and percentage
+                var total = english + maths + commerce + arts + computer;
+                var percentage = total / 5;
+    
+                // Get the result element
+                var result = document.getElementById("result");
+    
+                // Clear the previous result
+                result.innerHTML = "";
+    
+                // Create a paragraph element to show the name and roll no
+                var p1 = document.createElement("p");
+                p1.textContent = "Name: " + name + ", Roll No: " + roll;
+    
+                // Create a paragraph element to show the percentage
+                var p2 = document.createElement("p");
+                
+                 // Use different colors for different ranges of percentage
+                 if (percentage > 90) {
+                    p2.style.color = "gold";
+                    p2.textContent = "Percentage: " + percentage + "%";
+                 } else if (percentage >= 50 && percentage <= 70) {
+                    p2.style.color = "orange";
+                    p2.textContent = "Percentage: " + percentage + "%";
+                 } else if (percentage < 40) {
+                    p2.style.color = "red";
+                    p2.textContent = "Percentage: " + percentage + "%";
+                 }
+    
+                // Create a paragraph element to show the message
+                var p3 = document.createElement("p");
+    
+                // Use different messages for different ranges of percentage
+                if (percentage > 90) {
+                    p3.textContent = "Let's go! Give a treat!";
+                } else if (percentage >= 50 && percentage <= 70) {
+                    p3.textContent = "It's alright.";
+                } else if (percentage < 40) {
+                    p3.textContent = "Oh no! You got failed.";
+                }
+    
+                // Append the paragraphs to the result element
+                result.appendChild(p1);
+                result.appendChild(p2);
+                result.appendChild(p3);
+            });
+        </script>
+    </body>
+    </html>
